@@ -6,7 +6,9 @@ import "./Detalhes.css";
 
 function Detalhes({ listas }) {
   const params = useParams();
-  const tarefa = listas.find(a => a.nome === params.nome);
+  const tarefa = listas.find(a => a._id === params.id);
+
+  console.log('test33', params)
 
   const [texto, setTexto] = useState(""); //
 

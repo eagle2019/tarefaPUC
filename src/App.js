@@ -10,8 +10,8 @@ import Headers from "./components/Headers";
 
 function App() {
   const demoData = [
-    { nome: "Arroz", texto: "teste" },
-    { nome: "Feijão", texto: "teste" },
+    { _id: 'uni1', nome: "Arroz", texto: "teste" },
+    { _id: 'uni2', nome: "Feijão", texto: "teste" },
   ];
 
   const [listas, setListas] = useState(demoData);
@@ -34,8 +34,7 @@ function App() {
             <ModelList listas={listas} />
           </div>
         </Route>
-        <Route path="/tarefa/:nome" component={listas}>
-        {/* <Route path={['/tarefa', ...listas.map(a => a.nome)]}> */}
+        <Route path="/tarefa/:_id">
           <Detalhes listas={listas}/>
         </Route>
         <Route path="*">
