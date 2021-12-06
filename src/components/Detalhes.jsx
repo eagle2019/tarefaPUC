@@ -1,27 +1,22 @@
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Detalhes.css";
 
 function Detalhes({ listas }) {
   const params = useParams();
-  const tarefa = listas.find(a => a._id === params.id);
+  const idTarefa = params._id;
+  // const tarefa = listas.find(a => a._id === params.id)
+  const [tarefa, setTarefa] = useState({_id: '', nome: '', texto: ''});
 
-  console.log('test33', params)
-
-  const [texto, setTexto] = useState(""); //
-
-  const textChangeHandler = (event) => {
-    //
-    setTexto(event.target.value);
-  };
-
-  const submitHandler = (props) => {
-    //
-    props.onTarefaTexto(texto);
-    setTexto("");
-  };
+  useEffect(() => {
+    listas.forEach(element => {
+      if(element._id === idTarefa){
+        setTarefa(element);
+      }
+    });
+  });
 
   return (
     <div>
@@ -29,19 +24,18 @@ function Detalhes({ listas }) {
         <Button variant="contained">Voltar</Button>
       </div>
       <div className="center">
-        <h2>{tarefa}</h2>
+        <h2>{tarefa.nome}</h2>
         <div>
           <TextareaAutosize
-            onChange={textChangeHandler}
             style={{ width: 490, height: 100 }}
-            value={texto}
+            value={tarefa.texto}
           >
-            {tarefa}
+            {tarefa.texto}
           </TextareaAutosize>
         </div>
         <div className="bts">
           <Button 
-              variant="contained" onClick={submitHandler}>
+              variant="contained">
             Completar Tarefa
           </Button>
           <Button variant="contained">Cancelar Tarefa</Button>
