@@ -10,8 +10,8 @@ import Headers from "./components/Headers";
 
 function App() {
   const demoData = [
-    { _id: 'uni1', nome: "Arroz", texto: "teste" },
-    { _id: 'uni2', nome: "Feijão", texto: "teste" },
+    { _id: 'uni0', nome: "Arroz", texto: "teste" },
+    { _id: 'uni1', nome: "Feijão", texto: "teste" },
   ];
 
   const [listas, setListas] = useState(demoData);
@@ -27,7 +27,7 @@ function App() {
       <Switch>
         <Route path="/" exact>
           <div className="media">
-            <Tarefa onTarefaTexto={cadastrarNome} />
+            <Tarefa id={listas.length} onTarefaTexto={cadastrarNome} />
           </div>
           <hr></hr>
           <div className="bottom">

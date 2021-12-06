@@ -8,16 +8,8 @@ function Tarefa(props) {
   const [nome, setNome] = useState('');
   const [texto, setTexto] = useState('');
 
-  const nomeChangeHandler = (event) => {
-    setNome(event.target.value);
-  };
-
-  const textChangeHandler = (event) => {
-    setTexto(event.target.value);
-  }
-
   const submitHandler = () => {
-    props.onTarefaTexto(nome, texto);
+    props.onTarefaTexto({_id: "uni" + props.id, nome: nome, texto: texto});
     setNome("");
     setTexto("");
   };
@@ -29,7 +21,7 @@ function Tarefa(props) {
           id="outlined-basic"
           label="Tarefa"
           variant="outlined"
-          onChange={nomeChangeHandler}
+          onChange={(event) => setNome(event.target.value)}
           value={nome}
           style={{ width: 500 }}
         />
@@ -39,7 +31,7 @@ function Tarefa(props) {
           aria-label="empty textarea"
           placeholder="Texto"
           style={{ width: 490, height: 100 }}
-          onChange={textChangeHandler}
+          onChange={(event) => setTexto(event.target.value)}
           value={texto}
         />
       </div>
